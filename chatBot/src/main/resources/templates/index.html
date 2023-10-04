@@ -6,38 +6,57 @@
 <link rel="stylesheet" href="/css/header.css">
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/footer.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+	integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+	crossorigin="anonymous"></script>
 </head>
 <body>
-<header class="header">
-ChatBot_nxx5xxx
-</header>
-<main class="main">
-<div>채팅창 본문이 입력될 곳</div>
-<ul class="bot">
-	<li class="">
-	봇
-	</li>
-	<li class="bot_content">
-	봇 본문
-	</li>
-</ul>
+	<header class="header"> ChatBot_nxx5xxx </header>
+	<main class="main">
+		<div>채팅창 본문이 입력될 곳</div>
+		<ul class="bot">
+			<li class="">봇</li>
+			<li class="bot_content">안녕하세요 사용자님 무엇을 도와드릴까요?</li>
+			<li class="bot_content">처음 이용의 경우 도움말을 입력해보세요</li>
+		</ul>
 
-<ul class="human">
+		<!-- <ul class="human">
 	<li>
 	사람
 	</li>
 	<li class="human_content">
 	사람 본문
 	</li>
-</ul>
-</main>
-<footer class="footer">
-<div class="ft_inputBox">
-	<form>
-	<input class="ft_input">
-	<input type="submit" class="ft_send" value="전송">
-	</form>
-</div>
-</footer>
+</ul> -->
+	</main>
+	<footer class="footer">
+		<div class="ft_inputBox">
+			<form onsubmit="form_send()">
+				<input class="ft_input"> <input type="submit"
+					class="ft_send" value="전송">
+			</form>
+		</div>
+	</footer>
+	<script>
+	function form_send(){
+		alert('폼');
+		$.ajax({
+			type:"get",
+			dataType:"text",
+			url:"/send.do",
+			encType:"UTF-8",
+			success : function(data){
+				alert('데이터받아옴');
+				alert(data);
+			},
+			error:function(request, status, error){
+				alert('에러발생');
+		        console.log("에러상태: " + request.status)
+		        console.log("에러메세지: " + request.responseText)
+		        console.log("error: " + error);
+			}
+		});
+	}
+	</script>
 </body>
 </html>
