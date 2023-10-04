@@ -1,0 +1,40 @@
+@charset "UTF-8";
+*{
+	padding : 0;
+	margin : 0;
+}
+
+ul,li,dl{
+	list-style:none;
+}
+
+.main{
+	color:black;
+	font-weight:bold;
+	height:80vh;
+}
+
+.bot{
+	clear:both;
+	float:left;
+	color:blue;
+	font-weight:bold;
+	font-size:2em;
+}
+
+.bot_content{
+	color:black
+}
+
+.human{
+	clear:both;
+	float:right;
+	color:red;
+	font-weight:bold;
+	font-size:2em;
+	text-align:right;
+}
+
+.human_content{
+	color:black
+}

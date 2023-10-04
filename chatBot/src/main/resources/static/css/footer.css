@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.footer{
+	color:blue;
+}
+
+.ft_inputBox {
+	width: 100%;
+	float:left;
+}
+
+.ft_input{
+	width:79%;
+	height:15vh;
+	float:left;
+	resize:none;
+}
+
+.ft_send{
+	width:19%;
+	height:15vh;
+	float:left;
+}
