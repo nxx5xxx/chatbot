@@ -12,6 +12,7 @@ ul,li,dl{
 	color:black;
 	font-weight:bold;
 	height:80vh;
+	overflow:scroll;
 }
 
 .bot{

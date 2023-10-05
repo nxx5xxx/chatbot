@@ -31,31 +31,56 @@
 	</main>
 	<footer class="footer">
 		<div class="ft_inputBox">
-			<form onsubmit="form_send()">
-				<input class="ft_input"> <input type="submit"
-					class="ft_send" value="전송">
-			</form>
+<!-- 			<form onsubmit="form_send()"> -->
+				<input class="ft_input" name="title" id="title"
+				onkeypress='if(event.keyCode==13){form_send();}'> 
+				<button type="button" class="ft_send" onclick="form_send()">전송</button>
+				<!-- onKeypress='event.keyCode==13 ? form_send() : false'> -->
+<!-- </form> -->
 		</div>
 	</footer>
 	<script>
 	function form_send(){
-		alert('폼');
-		$.ajax({
-			type:"get",
-			dataType:"text",
-			url:"/send.do",
-			encType:"UTF-8",
-			success : function(data){
-				alert('데이터받아옴');
-				alert(data);
-			},
-			error:function(request, status, error){
-				alert('에러발생');
-		        console.log("에러상태: " + request.status)
-		        console.log("에러메세지: " + request.responseText)
-		        console.log("error: " + error);
-			}
-		});
+ 		/*		alert($("#title").val()); */
+		const human_msg = $("#title").val();
+ 		if(human_msg==''){
+ 			$(".main").append(
+ 					`<ul class="bot">
+ 					<li class="">봇</li>
+ 					<li class="bot_content">메시지를 입력해주세요</li>
+ 					</ul>`
+ 					);
+ 		}else{
+			$(".main").append(`<ul class="human"><li>사람</li><li class="human_content">${human_msg}</li></ul>`);
+			let bot_msg = null;
+			$.ajax({
+				type:"get",
+				dataType:"text",
+				url:"/send.do",
+				encType:"UTF-8",
+				async:false,
+				data: {title : human_msg},
+				success : function(data){
+					/* alert(data); */
+					bot_msg = data;
+				},
+				error:function(request, status, error){
+					/* alert('에러발생'); */
+			        console.log("에러상태: " + request.status)
+			        console.log("에러메세지: " + request.responseText)
+			        console.log("error: " + error);
+				}
+			});
+			$(".main").append(
+					`<ul class="bot">
+					<li class="">봇</li>
+					<li class="bot_content">${bot_msg}</li>
+					</ul>`
+					);
+			let scrH = $('.main').prop('scrollHeight');
+			$('.main').scrollTop(scrH);
+			$('#title').val('');
+ 		}
 	}
 	</script>
 </body>
