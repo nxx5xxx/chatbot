@@ -26,4 +26,12 @@ class InputData {
 		}
 	}
 
+	@Test
+	@DisplayName("InputData2")
+	void test2() {
+		InputDocument inputDocument = new InputDocument();
+		inputDocument.setCollections("테스트");
+		inputRepository.insert(inputDocument);
+	}
+
 }

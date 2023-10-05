@@ -39,3 +39,8 @@ ul,li,dl{
 .human_content{
 	color:black
 }
+
+.opinions{
+	color:green;
+	cursor:pointer;
+}
