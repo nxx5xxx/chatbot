@@ -65,3 +65,63 @@
 	그렇다고 검색어를 하나하나 일일히 쪼개서 그것을 다시 합친 후 db에 있는 메뉴와 값을 대입하면
 	그게 더 오래걸릴것 같은데..
 	일단 해보고 생각해야겠다
+
+23.10.06	
+7.
+	산업기사 필기를 준비하느랴 정신이없다..
+	일단 6-1은 contains로 했고 메뉴도 넣어야하는데 뭘넣을지 아직도모르겠다
+
+7-1.
+	기왕 봇이니까 날씨 기능정도는 넣어줘야할라나
+	날씨 api를 넣어줘봐야겠다
+
+7-2.
+	날씨 api 따로 있을줄 알았는데
+	간편하게 있는게 없다
+	위도와 경도를 이용해서 넣는 외국 api가 있던데
+	이걸 이용해야 할것같다..
+	
+7-3.
+	모든 주소를 위도와 경도로 바꾸는 작업을하여 db에 뿌리기 vs
+	위도 경도만 다른 api에서 뽑아와 사용하기
+	아무래도 후자가 나을것같다
+	전자도 어려운 작업은 아닐테지만 비효율적인것같다 상업적용도도아니고
+	일단 위도 경도만 갖고와서 출력하도록 해보자
+	
+7-4.
+	카카오지도api 갖고올라고 작업하다 생각해보니까 api 자바스크립트라서
+	자바로 돌릴바에 자바스크립트에서 날씨정보라는 글씨있는지 확인하면 된다
+	lastIndexOf함수를 써서 총 글자 에 마지막글자로 됏을경우 해당기능을 사용하라
+	라고 하려고했는데 endsWith()라는 엄청난 함수가 있다는걸 알았다
+	찾아보니 자바에도 있는 메서드다 홀리몰리..과카몰리..
+	
+7-5.
+	Openweather Api 의 무료버전 정도면 충분해서 쓰려고하니
+	fetch()라는 함수로 api를 호출해 json을 받아와야한다
+	fetch("API주소",{} <생략가능).then( => ) 이런식으로
+	사용하는데 공부좀 더 하고 진행해야할것같아서
+	해당부분 공부중...생각지도 않은곳에서 부족한부분을 찾아냈다
+	
+	fetch('https://api.openweathermap.org/data/2.5/weather?lat=128.597678619113&lon=35.8460409913891&appid=f936e6272f17969d1930e3c4f00dc158')
+	f936e6272f17969d1930e3c4f00dc158
+	f936e6272f17969d1930e3c4f00dc158
+	
+	const url =  `https://api.openweathermap.org/data/2.5/weather?lat=128.597678619113&lon=35.8460409913891&appid=f936e6272f17969d1930e3c4f00dc158`
+    console.log(url)
+    
+    
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=37.5325655&lon=126.70750609999999&appid=f936e6272f17969d1930e3c4f00dc158&units=metric`)
+    .then(res=>res.json())
+    .then(json=>console.log(json))
+    
+    이것은
+    
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35.8460409913891&lon=128.597678619113&appid=f936e6272f17969d1930e3c4f00dc158&units=metric`)
+    .then(function(response){
+    	return response.json();
+    })
+    .then(function(json){
+        console.log(json)
+    })
+    
+    이것과 같은코드

@@ -39,7 +39,31 @@
 <!-- </form> -->
 		</div>
 	</footer>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e5844a91d6f6ebd1c2d952b89252020&libraries=services"></script>
 	<script>
+	
+	//카카오api로 주소를 좌표로 바꾸기
+	let position_x='';
+	let position_y='';
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		// 주소로 좌표를 검색합니다
+		function trans_addr(addr){
+			console.log(addr);
+			geocoder.addressSearch(addr, function(result, status) {
+			
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+			    	 position_x=result[0].y;
+			    	 position_y=result[0].x;
+						console.log(position_y);
+						console.log(position_x);
+			    } 
+			});
+		}
+	//여기까지
+	
+	
 	function form_send(){
  		/*		alert($("#title").val()); */
 		const human_msg = $("#title").val();
@@ -50,7 +74,22 @@
  					<li class="bot_content">메시지를 입력해주세요</li>
  					</ul>`
  					);
- 		}else{
+ 		}else if(human_msg.endsWith(' 날씨정보')){
+ 			$(".main").append(
+ 					`<ul class="human">
+ 					<li>사람</li>
+ 					<li class="human_content">${human_msg}</li>
+ 					</ul>`
+ 					);
+			$(".main").append(
+					`<ul class="bot">
+					<li class="">봇</li>
+					<li class="bot_content">${human_msg} 에 대해 검색하셨습니다</li>
+					</ul>`
+					);
+			trans_addr(human_msg.substring(0,human_msg.length-5));
+
+		}else{
 			$(".main").append(`<ul class="human"><li>사람</li><li class="human_content">${human_msg}</li></ul>`);
 			let bot_msg = null;
 			$.ajax({
@@ -89,5 +128,8 @@
 		form_send();
 	}
 	</script>
+	<!-- 다음주소api갖고오기 -->
+
+
 </body>
 </html>
