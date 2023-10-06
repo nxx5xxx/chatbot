@@ -116,7 +116,9 @@
     
     이것은
     
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=35.8460409913891&lon=128.597678619113&appid=f936e6272f17969d1930e3c4f00dc158&units=metric`)
+
+    
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=37.6152686898333&lon=126.715657922927&appid=f936e6272f17969d1930e3c4f00dc158&units=metric`)
     .then(function(response){
     	return response.json();
     })
@@ -125,3 +127,9 @@
     })
     
     이것과 같은코드
+    
+7-6.
+	날씨정보 완료.
+	
+8.
+	날씨도 봇 설명에 넣어줘야겠다

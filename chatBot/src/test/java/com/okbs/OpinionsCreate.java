@@ -18,7 +18,7 @@ class OpinionsCreate {
 	@DisplayName("Opinions 콜렉션 추가")
 	void test() {
 		OpinionDocument opinionDocument = new OpinionDocument();
-		opinionDocument.setOpinions("도움말 , 메뉴1 , 메뉴2 , 메뉴3");
+		opinionDocument.setOpinions("도움말 , 날씨 , 메뉴2 , 메뉴3");
 		opinionRepository.insert(opinionDocument);
 	}
 

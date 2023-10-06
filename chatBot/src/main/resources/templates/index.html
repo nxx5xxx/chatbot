@@ -45,6 +45,15 @@
 	//카카오api로 주소를 좌표로 바꾸기
 	let position_x='';
 	let position_y='';
+	let weather_info;
+	let scrH;
+	
+		//채팅창 초기화하고 스크롤 가작 하단으로 내리는 펑션
+		function chat(){
+			scrH = $('.main').prop('scrollHeight');
+			$('.main').scrollTop(scrH);
+			$('#title').val('');
+		}
 		// 주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
 		// 주소로 좌표를 검색합니다
@@ -54,16 +63,35 @@
 			
 			    // 정상적으로 검색이 완료됐으면 
 			     if (status === kakao.maps.services.Status.OK) {
-			    	 position_x=result[0].y;
-			    	 position_y=result[0].x;
-						console.log(position_y);
-						console.log(position_x);
+			    	 //다음주소api이용해서 뽑아온 좌표데이터를 넣어주기  
+			    	 position_x=result[0].x;
+			    	 position_y=result[0].y;
+						//console.log(position_y);
+						//console.log(position_x);
+						
+					//openweather api로 해당 위도 경도를 이용해서 날씨정보 받아오기
+					fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position_y}&lon=${position_x}&appid=f936e6272f17969d1930e3c4f00dc158&units=metric`)
+				    .then(res=>res.json())
+				    .then(function(json){
+				    	weather_info=json.main;
+				    	//console.log(weather_info);
+							$(".main").append(
+									`<ul class="bot">
+									<li class="bot_content">
+									현재 온도는 <span class='red'>${weather_info.temp}°C</span> 이며,
+									 체감온도는 <span class='red'>${weather_info.feels_like}°C</span> 입니다.
+									</li>
+									</ul>`
+									);
+							chat();
+				    	}
+				    );
 			    } 
 			});
 		}
 	//여기까지
 	
-	
+	// 채팅창입력부분
 	function form_send(){
  		/*		alert($("#title").val()); */
 		const human_msg = $("#title").val();
@@ -74,6 +102,7 @@
  					<li class="bot_content">메시지를 입력해주세요</li>
  					</ul>`
  					);
+ 			chat();
  		}else if(human_msg.endsWith(' 날씨정보')){
  			$(".main").append(
  					`<ul class="human">
@@ -116,9 +145,7 @@
 					<li class="bot_content">${bot_msg}</li>
 					</ul>`
 					);
-			let scrH = $('.main').prop('scrollHeight');
-			$('.main').scrollTop(scrH);
-			$('#title').val('');
+			chat();
  		}
 	}
 	
@@ -128,8 +155,6 @@
 		form_send();
 	}
 	</script>
-	<!-- 다음주소api갖고오기 -->
-
 
 </body>
 </html>
