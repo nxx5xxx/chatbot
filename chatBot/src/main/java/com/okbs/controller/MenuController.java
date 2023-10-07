@@ -32,7 +32,7 @@ public class MenuController {
 			if(data.length()>0) {
 				data = "찾으시는 메뉴가 " + data + " 이 중에 있나요? <br> 원하시는 메뉴를 선택해보세요";
 			}else {
-				data = "해당하는 내역이 없습니다. 도움말을 입력해보세요!";
+				data = "해당하는 내역이 없습니다. '도움말'을 입력해보세요!";
 			}
 			//System.out.println("준비중입니다");
 		}
