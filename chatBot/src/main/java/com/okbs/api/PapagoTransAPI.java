@@ -17,12 +17,12 @@ public class PapagoTransAPI {
 	
 	final static String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
 	//번역할것 한글에서 영어
-	String transLang = "ko";
-	String afterTransLang = "en";
+	String transLang = "en";
+	String afterTransLang = "ko";
 
 	//post로 보내서 받아오기
 	public String post(Map<String, String> reqHeaders, String txt) {
-		System.out.println("post메서드 실행");
+		//System.out.println("post메서드 실행");
 		HttpURLConnection conn = connect(apiURL);
 		String txtData = "source="+transLang+"&target="+afterTransLang+"&text="+txt;
 		try {

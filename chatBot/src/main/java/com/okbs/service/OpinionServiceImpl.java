@@ -14,6 +14,7 @@ public class OpinionServiceImpl implements OpinionService {
 	@Autowired
 	OpinionRepository opinionRepository;
 	
+	
 	@Override
 	public String getOpinions(String data) {
 		List<OpinionDocument> dataList = opinionRepository.findAll();
