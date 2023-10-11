@@ -8,5 +8,5 @@
     Java 알고리즘을 활용하는것과 API 사용이 주된 목적
 
 ## 시연영상
-
-<video src="sample.mp4" autoplay muted controls>
+<img src="./sample.gif">
+<video src="./sample.mp4" autoplay muted controls>
