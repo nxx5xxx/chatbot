@@ -34,11 +34,15 @@ public class TransService {
 			}
 			
 		}else {
-			txt = txt.substring(0,txt.lastIndexOf(" 번역해줘"));
+			try {
+				txt = txt.substring(0,txt.lastIndexOf(" 번역해줘"));
+			} catch (Exception e) {
+				return "띄어쓰기에 유의해주세요";
+			}
 		}
 		
 		//번역해야 할 언어 입력감지
-		if(txt.matches("[가-힣]*")) {
+		if(txt.matches("[가-힣 ]*")) {
 			api.setTransLang("ko");
 			if(api.getAfterTransLang().equals("ko")) {	
 				api.setAfterTransLang("en");
